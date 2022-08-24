@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>Home Page</title>
+	<style>
+	div.background{
+	background:url("https://i.pinimg.com/564x/b8/e0/11/b8e0119c0979cb1247b9f7d879b5439e.jpg") no-repeat center center fixed;
+	min-height: 100vh;
+	min-width:100vw;
+	background-position: center;
+	background-size:100% 100%;
+	height: auto;
+	width:100%;
+	}
+
+	div.title{
+	width:100vw;
+	margin:auto;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size:24px;
+	font-weight:bold;
+	color:black;
+	background-color: rgba(255,255,255,0.4);
+	}
+	.title2{
+	width:1000px;
+	margin:auto;
+	text-align: center;
+	font-size:20px;
+	font-weight:bold;
+	color:black;
+	background-color: rgba(255,255,255,0.5);
+	}
+	.p{
+	width:1000px;
+	padding:10px;
+	margin:auto;
+	color:black;
+	text-align:left;
+	background-color: rgba(255,255,255,0.5);
+	}
+	table, th, td{
+		border:1px solid;
+		margin:auto;
+		border-collapse:collapse;
+	}
+	</style>
+</head>
+<body>
+	<div class="background">
+	<div class="title">Wehelp 申請書</div>
+	<table>
+		<tr><th class="title2">個人簡介</th></tr>
+		<tr><th class="p">
+		我是今年二月初獲一枚虎寶的新手媽媽，現居於四季如夏的台中。今年四月剛從位於林口華亞科學園區內的外商ASML離職，換到新竹另一家同樣是半導體設備商的台灣應材。專業是偏向光學跟物理的工程師，協助公司定義機台校準演算法和排除產線機台問題。目前已有一些程式基礎，會使用的語言是C, matlab跟Python。想轉換成軟體工程師跑道的原因是希望可以有遠端工作的機會以就近照顧小孩。
+		</th></tr>
+		<tr><th class="title2">為了成為軟體工程師，曾做過什麼努力？若有具體專案作品請分享給我們</th></tr>
+		<tr><th class="p">
+		在ASML任職期間，我在Udemy平台上自學Jose Portilla 開的Python bootcamp from zero to hero課程，希望可以使用此語言來學習大數據跟機器學習，課程內的小project都有完成。摸索的過程裡，覺得網頁相關的工程師，市場需求很旺，因此開始轉往此方向，本身也有嘗試自己架設網頁，雖然是使用weebly提供的模板迅速架了一個網頁，但過程中自己有不斷試著閱讀網頁的程式碼去理解其中的邏輯，從中學習，同時也發現使用模板的諸多限制，有些小工能開始會使用程式碼去修正。目前正在Udemy上面跟著Jose Portilla開的另一門Full stack web developer bootcamp學習，希望從頭學習，可以更自由的架設網頁。
+		</th></tr>
+		<tr><th class="title2">如果參與這個計畫，會怎麼安排學習時間？</th></tr>
+		<tr><th class="p">
+		現在我已經辭去工作，全心投入轉職準備，小孩7:30-18:30會由保母代為照顧，接送完小孩後，我打算使用8:30-17:30這段時間來全力準備軟體工程師轉職，如果有被錄取wehelp bootcamp，會優先準備wehelp bootcamp的指派專案跟作業。假日依狀況，可以跟老公協調時間來準備課程。
+		</th></tr>
+		<tr><th class="title2">是否有想要加入的軟體公司？為什麼想加入該公司？</th></tr>
+		<tr><th class="p">
+		目前還沒有特定偏好的公司，只要能夠提供遠端工作機會的公司，基本上我都會考慮。如果可能的話，會稍微偏好外商公司，因為我之前的公司都基本都是外商，在外商可以不斷精進自己的語文溝通能力，我會希望可以維持這樣的能力。
+		</th></tr>
+		<tr><th class="title2">請描述一件你曾經碰到最困難的事情，如何克服？</th></tr>
+		<tr><th class="p">
+		ASML是一間外商公司，工作性質很特別，不是工作來找你，而是你要自己去找工作、生專案，為部門帶來能見度跟價值，這跟一般的工作很不一樣，所以剛加入時，非常困惑，不知如何下手，也因此曾被前輩提醒這樣的狀態太久，工作的績效會不好看。為了解決這樣的狀況，我開始很積極在每場會議發表意見提出問題，當有討論到是我可以處理的問題時，也會毛遂自薦，並用心完成每項指配給自己的任務，遇到研發團隊跟產線上的溝通問題，主動去協調雙方，慢慢建立起stakeholders對我的信心，也才因此突破這樣的困境。因此很順利的可以在該職位任職三年，離開後，還獲得合作過的team leader私下回的感謝祝福信。
+		</th></tr>
+		<tr><th class="title2">關於這份申請網頁，請分享一個你開發時的技術心得。</th></tr>
+		<tr><th class="p">在設置背景圖片的時候，很難讓圖片可以隨著瀏覽器視窗大小作對應的變更，後來把background-size拉到100% 100%，並且設置min-height到100vh、min-width到100vw，這問題可以解決，只是圖片感覺被壓縮了。另外，想讓背景圖片變透明，使用opacity的話，連字體也會變透明，上網查很多解法，後來選擇在文字框裡設背景顏色，然後把顏色變透明作為一個對應解法。</th></tr>
+		<tr><th class="title2">其他想要對我們說的事情？</th></tr>
+		<tr><th class="p">
+		我有看到我的大學物理系同學，也有參與此bootcamp，後續他也順利從台積工程師轉職成功為Pinkoi的後端工程師，這讓我對貴計畫充滿期待，我會好好學習得!請讓希望轉職成功，希望可以就近邊工作邊帶小孩的媽媽錄取吧!
+		</div></th></tr>
+	</table>
+
+	</div>
+</body>
+</html>
