@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8"/>
+        <title>Assignment_week_1</title>
+        <link rel="stylesheet" type="text/css" href="layout.css"/>
+    </head>
+    <body>
+        <div class="frame1">
+            <div class="left">My Website</div>
+            <div class="right">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+                <div class="mobile"><img src="Burger.png" height="30" /></div>
+            </div>
+        </div>
+
+        <div class="welcome">
+            <div class="WelcomeText">Welcome to MyHome</div>
+        </div>
+    
+        <div class="MainFrame">
+            <div class="main">
+                <div class="SubMain">
+                    <div class="promotion">
+                        <!--<div class="promo_pic_block"><img class="promo_pic" src="Dog.jpeg" width="80"/></div>
+                        <div class="promo_text">Promotion 1</div>
+                        -->
+                    </div>
+                    <div class="blank"></div>
+                    <div class="promotion">
+                        <!-- <div class="promo_pic_block"><img class="promo_pic" src="Dog.jpeg" width="80"/></div>
+                        <div class="promo_text">Promotion 2</div>  -->
+                    </div>
+                </div>
+
+                <div class="SubMain2">
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 1</div> -->
+                    </div>
+                    <div class="blank"></div>
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 2</div> -->
+                    </div>
+                    <div class="blank_desk"></div>
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 3</div> -->
+                    </div>
+                    <div class="blank"></div>
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 4</div> -->
+                    </div>
+                </div>
+
+                <div class="SubMain2">
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 5</div> -->
+                    </div>
+                    <div class="blank"></div>
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 6</div> -->
+                    </div>
+                    <div class="blank_desk"></div>
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 7</div> -->
+                    </div>
+                    <div class="blank"></div>
+                    <div class="block">
+                        <!-- <div class="block_pic"><img src="Dog.jpeg" width=100%/></div>
+                        <div class="block_text">Title 8</div> -->
+                    </div>
+                </div>
+                <div class="button" onclick="LoadMoreData();">
+                    Load More
+                </div>
+            </div>
+         </div>
+
+    <script>
+        function firstImgUrl(str){
+            let arry=str.split('https://')
+            return 'https://'+arry[1]
+        }
+        function displayData(containerClass, data, dataStart, picAtt, picBlockAtt, textAtt,centerText){
+            let container=document.querySelectorAll(containerClass);
+            for(let i=0; i<container.length;i++){
+                let imgDiv=document.createElement('div');
+                let textDiv=document.createElement('div');
+                let img=document.createElement('img');
+                img.src = firstImgUrl(data[dataStart].file);
+                
+                // set attributes
+                img.setAttribute("class",picAtt);
+                imgDiv.setAttribute("class",picBlockAtt);
+                textDiv.setAttribute("class",textAtt);
+                if(centerText){
+                    let textSpan=document.createElement('span');
+                    textSpan.setAttribute("class","text_span");
+                    textSpan.appendChild(document.createTextNode(data[dataStart].stitle));
+                    textDiv.appendChild(textSpan);
+
+                }else{
+                    textDiv.appendChild(document.createTextNode(data[dataStart].stitle));
+                }
+                imgDiv.appendChild(img);
+                container[i].appendChild(imgDiv);
+                container[i].appendChild(textDiv);
+                dataStart++;
+            }
+            return dataStart
+        }
+        function createBlock(dataStart, data){
+            let container=document.createElement('div');
+            let imgDiv=document.createElement('div');
+            let textDiv=document.createElement('div');
+            let img=document.createElement('img');
+            let textSpan=document.createElement('span');
+
+            img.src = firstImgUrl(data[dataStart].file);
+            // set attributes
+            container.setAttribute("class","block");
+            img.setAttribute("class","pic");
+            imgDiv.setAttribute("class","block_pic");
+            textDiv.setAttribute("class","block_text");
+            textSpan.setAttribute("class","text_span");
+
+            textSpan.appendChild(document.createTextNode(data[dataStart].stitle));
+            console.log("dataStart: ", dataStart);
+            console.log(data[dataStart].stitle);
+            textDiv.appendChild(textSpan);
+            imgDiv.appendChild(img);
+            container.appendChild(imgDiv);
+            container.appendChild(textDiv);
+            dataStart++;
+            return {'dataStart':dataStart, 'container':container}
+        }
+        function NoMoreData(GrandParentNode,ParentNode){
+            let buttonNode=document.querySelector(".button");
+            buttonNode.textContent="No more data";
+            GrandParentNode.insertBefore(ParentNode,buttonNode);
+            return;
+        }
+        function LoadMoreData(){
+            dataStart=document.querySelectorAll(".block").length+3;
+            console.log(dataStart);
+            let main=document.querySelector(".main");
+            let refNode=document.querySelector(".button");
+            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
+                return response.json();
+            }).then(function (data){
+                dataOnline=data.result.results;
+                for (let i=0;i<2;i++){
+                    let subMain2=document.createElement('div');
+                    let blank1=document.createElement('div');
+                    let blank2=document.createElement('div');
+                    let blankDesk=document.createElement('div');
+                    let funcOutput={};
+                    
+                    subMain2.setAttribute("class","SubMain2");
+                    blank1.setAttribute("class","blank");
+                    blank2.setAttribute("class","blank");
+                    blankDesk.setAttribute("class","blank_desk");
+                    
+                    if (dataStart>=dataOnline.length){NoMoreData(main,subMain2);return;}
+                    funcOutput=createBlock(dataStart, dataOnline);
+                    dataStart=funcOutput.dataStart;
+                    subMain2.appendChild(funcOutput.container);
+                    subMain2.appendChild(blank1);
+                    if (dataStart>=dataOnline.length){NoMoreData(main,subMain2);return;}
+                    funcOutput=createBlock(dataStart, dataOnline);
+                    dataStart=funcOutput.dataStart;
+                    subMain2.appendChild(funcOutput.container);
+                    subMain2.appendChild(blankDesk);
+                    if (dataStart>=dataOnline.length){NoMoreData(main,subMain2);return;}
+                    funcOutput=createBlock(dataStart, dataOnline);
+                    dataStart=funcOutput.dataStart;
+                    subMain2.appendChild(funcOutput.container);
+                    subMain2.appendChild(blank2);
+                    if (dataStart>=dataOnline.length){NoMoreData(main,subMain2);return;}
+                    funcOutput=createBlock(dataStart, dataOnline);
+                    dataStart=funcOutput.dataStart;
+                    subMain2.appendChild(funcOutput.container);
+                    main.insertBefore(subMain2,refNode);
+                }
+            })
+        }
+        fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
+            return response.json();
+        }).then(function(data){
+            //已經取得資料
+            console.log(data.result.results);
+            data=data.result.results;
+            // let arry=data[0].file.split('https://')
+            // console.log('https://'+arry[1])
+            //把資料呈現到畫面上
+            let dataStart=0;
+            //選擇所有class promotion nodes, there are 2
+            dataStart=displayData(".promotion", data, dataStart, "promo_pic", "promo_pic_block", "promo_text", false);
+            dataStart=displayData(".block", data, dataStart, "pic", "block_pic", "block_text", true);
+        });
+    </script>
+        
+    </body>
+</html>
