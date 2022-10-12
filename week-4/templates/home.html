@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Home Page</title>
+        <style>
+            body{
+                margin:0;
+            }
+            .welcomebox{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height:100px;
+                background-color: grey;
+            }
+            .welcometext{
+                flex:none;
+                font-size: 40px;
+                font-weight:bold;
+                color:white;
+                text-align: center;
+            }
+            .Form{
+                text-align: center;
+            }
+            .login{
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="welcomebox">
+            <div class="welcometext">歡迎光臨，請輸入帳號密碼</div>
+        </div>
+    
+        <div class="Form">
+            <div class="login">登入系統</div>
+            <form action="/login" method="POST">
+                <div class="login">帳號<input type="text" name="account"/></div>
+                <div class="login">密碼<input type="text" name="password"/></div>
+                <button class="login">登入</button>
+            </form>
+        </div>
+        <hr />
+        <div class="Form">
+            <div class="login">計算正整數的平方</div>
+            <form action="/getnum/">
+                <div class="loging">正整數<input type="text" name="num"/></div>
+                <button class="login">計算</button>
+            </form>
+
+        </div>
+    </body>
+</html>
