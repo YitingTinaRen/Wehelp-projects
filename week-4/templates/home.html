@@ -45,11 +45,17 @@
         <hr />
         <div class="Form">
             <div class="login">計算正整數的平方</div>
-            <form action="/getnum/">
-                <div class="loging">正整數<input type="text" name="num"/></div>
-                <button class="login">計算</button>
-            </form>
-
+            <div class="loging">正整數<input id="num" type="number"/></div>
+            <button class="login" onclick="getnum()">計算</button>
         </div>
+        <script>
+            function getnum(){
+                let num=document.getElementById("num").value;
+                url='/square/'+num;
+                console.log(url);
+                location.href=url;
+            }
+
+        </script>
     </body>
 </html>

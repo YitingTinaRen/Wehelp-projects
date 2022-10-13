@@ -48,13 +48,9 @@ def logout():
     session.pop("logged_in", None)
     return redirect("/")
 
-@app.route("/getnum/")
-def getnum():
-    number=request.args.get("num","")
-    number=int(number)
-    return redirect(url_for("square", number=number))
-@app.route("/square/<int:number>")
+@app.route("/square/<number>")
 def square(number):
+    number=int(number)
     number=number**2
     return render_template("square.html", number=number)
 
