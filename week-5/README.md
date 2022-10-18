@@ -65,13 +65,16 @@
 - 會員若是嘗試對留言按讚：要能先檢查是否曾經按過讚，然後才將按讚的數量 +1 並且記錄按讚的會員是誰。
 
 不用寫程式，只要你認為你的資料庫設計能充分支援以上場景即可。
+
 **My solution**
+
 Create a table called "wholikemsg" with the following information and constrains:
 |column name|data type|constraints|remarks|
 |---|---|---|---|
 |id|bigint|primary key;auto_increment|lableing for likes for all messages|
 |msg_id|bigint|not null; reference to "id" in messge table|This is a message id connected to the other table records all messages| 
 |like_member_id|bigint|not null, reference to "id" in member table|This records which member likes the message|
+
 Finally, add additional unique constrains that msg_id and like_member_id cannot duplicate at the same time.
 
 Following is the example:
