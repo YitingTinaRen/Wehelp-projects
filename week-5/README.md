@@ -66,7 +66,7 @@
 
 不用寫程式，只要你認為你的資料庫設計能充分支援以上場景即可。
 
-**My solution**
+**My solution:**
 
 Create a table called "wholikemsg" with the following information and constrains:
 |column name|data type|constraints|remarks|
