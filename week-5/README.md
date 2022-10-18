@@ -57,3 +57,32 @@
 3. 使用 SELECT、SQL Aggregate Functions 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留言平均按讚數。
 
 ![aggregate function included](/week-5/img/5-3.png)
+---
+## Additional
+我們不只要記錄留言按讚的數量，還要紀錄每一個留言的按讚會員是誰，支援以下使用場合：
+
+- 可以根據留言編號取得該留言有哪些會員按讚。
+- 會員若是嘗試對留言按讚：要能先檢查是否曾經按過讚，然後才將按讚的數量 +1 並且記錄按讚的會員是誰。
+
+不用寫程式，只要你認為你的資料庫設計能充分支援以上場景即可。
+**My solution**
+Create a table called "wholikemsg" with the following information and constrains:
+|column name|data type|constraints|remarks|
+|---|---|---|---|
+|id|bigint|primary key;auto_increment|lableing for likes for all messages|
+|msg_id|bigint|not null; reference to "id" in messge table|This is a message id connected to the other table records all messages| 
+|like_member_id|bigint|not null, reference to "id" in member table|This records which member likes the message|
+Finally, add additional unique constrains that msg_id and like_member_id cannot duplicate at the same time.
+
+Following is the example:
+1. Build the table
+
+![Build wholikemsg table](/week-5/img/6-1.png)
+
+2. Build data
+
+![Build wholikemsg table data](/week-5/img/6-2.png)
+
+3. Check if the same member like the same message twice, and give rise to an error
+
+![Build wholikemsg table](/week-5/img/6-3.png)
