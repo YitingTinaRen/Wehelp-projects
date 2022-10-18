@@ -42,6 +42,7 @@
 ![Average of follower_count](/week-5/img/4-3.png)
 
 ## Req 5 results
+**message table:**
 ![message table](/week-5/img/5-0.png)
 
 1. 使用 SELECT 搭配 JOIN 語法，取得所有留言，結果須包含留言者會員的姓名。
