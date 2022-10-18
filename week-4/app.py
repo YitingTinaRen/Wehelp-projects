@@ -35,6 +35,10 @@ def login():
             return redirect(url_for("error", message="帳號、或密碼輸入錯誤"))
         else:
             session["logged_in"]=True
+            print("session.new: ",session.new)
+            print("session.modified: ",session.modified)
+            print("session.permanent: ",session.permanent)
+            print(session.__dict__)
             return redirect("/member")
 
 
@@ -46,6 +50,10 @@ def error():
 @app.route("/logout")
 def logout():
     session.pop("logged_in", None)
+    print("session.new: ",session.new)
+    print("session.modified: ",session.modified)
+    print("session.permanent: ",session.permanent)
+    print(session.__dict__)
     return redirect("/")
 
 @app.route("/square/<number>")
