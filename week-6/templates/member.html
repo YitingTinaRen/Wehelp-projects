@@ -26,6 +26,12 @@
                 font-size: 20px;
                 margin-top: 10px;
             }
+            .Form{
+                text-align: center;
+            }
+            .login{
+                margin-bottom: 5px;
+            }
            
         </style>
     </head>
@@ -33,8 +39,43 @@
         <div class="welcomebox">
             <div class="welcometext">歡迎光臨，這是會員頁</div>
         </div>
-    
-        <div class="content">{{usrname}}，歡迎登入系統</div>
+        <br/>
+        <br/>
+        <div class="content">{{name}}，歡迎登入系統</div>
         <div class="content"><a href="/logout">登出</a></div>
+        <br/>
+        <br/>
+
+        <hr/>
+        <br/>
+        <div class="Form">
+            <div class="content" style="margin-bottom: 10px;font-weight: bold;">快來留言吧</div>
+            <form  method="POST">
+                <div class="login">內容 &thinsp;<input type="text" name="msg"/></div>
+                <button class="login">送出</button>
+            </form>
+        </div>
+        <br/>
+        <br/>
+        <hr/>
+
+        <div id="msgHistory" class="Form"></div>
+
+        <script>
+        let msgHistory=document.getElementById("msgHistory"), data={{oldmsg|tojson}};
+        for(let i=0;i<data.length;i++){
+            let newdiv=document.createElement("div");
+            let strongstyle=document.createElement("strong");
+            newdiv.setAttribute("class","content");
+            
+            nametext=document.createTextNode(data[i][1]+": ");
+            msgtext=document.createTextNode(data[i][0]);
+            
+            strongstyle.appendChild(nametext);
+            newdiv.appendChild(strongstyle);
+            newdiv.appendChild(msgtext);
+            msgHistory.appendChild(newdiv);
+        }
+        </script>
     </body>
 </html>
