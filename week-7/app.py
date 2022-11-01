@@ -6,6 +6,7 @@ from flask import request
 from flask import session
 from flask import render_template
 from flask import url_for
+from flask import jsonify
 import mysql.connector
 import json
 
@@ -19,12 +20,16 @@ def checkData(sql, val=()):
     return myresult
 
 def writeData(sql, val):
-    mydb=mysql.connector.connect(pool_name="mypool")
-    mycursor=mydb.cursor()
-    mycursor.execute(sql, val)
-    mydb.commit()
-    mycursor.close()
-    mydb.close()
+    try:
+        mydb=mysql.connector.connect(pool_name="mypool")
+        mycursor=mydb.cursor()
+        mycursor.execute(sql, val)
+        mydb.commit()
+        mycursor.close()
+        mydb.close()
+        return 1
+    except:
+        return 0
 
 
 app=Flask(__name__)
@@ -61,26 +66,21 @@ def apiMember():
         myresult=checkData(sql, val)
         result={"data":None}
         if not myresult or "logged_in" not in session:
-            return json.dumps(result)
+            return jsonify(result)
         else:
             result["data"]=myresult[0]
             result["data"].pop("time")
-            return json.dumps(result)
+            return jsonify(result)
     else:
         newname=request.get_json().get("name","")
         sql="update member set name= %s where id=%s"
         val=(newname,session["id"],)
-        writeData(sql, val)
 
-        sql="select *from member where username = %s"
-        val=(session["usrname"],)
-        myresult=checkData(sql, val)
-
-        if "logged_in" not in session:
-            return json.dumps({"error":True})
+        if "logged_in" not in session or not writeData(sql,val):
+            return jsonify({"error":True})
         else:
-            session["name"]=myresult[0]["name"]
-            return json.dumps({"ok":True})
+            session["name"]=newname
+            return jsonify({"ok":True})
 
 
 
